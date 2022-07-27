@@ -5,6 +5,7 @@ AllCops:
     - vendor/bundle/**/*
     - gemfiles/*
     - bin/*
+    - db/**/*
 
 require:
  - rubocop-rails

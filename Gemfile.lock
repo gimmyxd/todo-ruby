@@ -68,6 +68,14 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    aserto (0.0.4)
+      aserto-grpc-authz (~> 0.0.6)
+      jwt (~> 2.4)
+      rack (~> 2.0)
+    aserto-grpc-authz (0.0.7)
+      grpc (~> 1.46)
+    aserto-rails (0.0.1)
+      aserto (~> 0.0.4)
     ast (2.4.2)
     builder (3.2.4)
     concurrent-ruby (1.1.10)
@@ -85,6 +93,12 @@ GEM
       rake
     globalid (1.0.0)
       activesupport (>= 5.0)
+    google-protobuf (3.21.4)
+    googleapis-common-protos-types (1.3.2)
+      google-protobuf (~> 3.14)
+    grpc (1.48.0)
+      google-protobuf (~> 3.19)
+      googleapis-common-protos-types (~> 1.0)
     http (5.1.0)
       addressable (~> 2.8)
       http-cookie (~> 1.0)
@@ -99,6 +113,7 @@ GEM
     irb (1.4.1)
       reline (>= 0.3.0)
     json (2.6.2)
+    jwt (2.4.1)
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
@@ -208,6 +223,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aserto-rails
   debug
   http
   puma (~> 5.0)

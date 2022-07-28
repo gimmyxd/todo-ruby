@@ -4,4 +4,12 @@ class ApplicationController < ActionController::API
   rescue_from Aserto::AccessDenied do |exception|
     render json: { error: exception.message }, status: :unauthorized
   end
+
+  rescue_from StandardError do |exception|
+    if Rails.env.development?
+        Rails.logger.error exception.backtrace.inspect
+    end
+
+    render json: { error: exception.message }, status: :internal_server_error
+  end
 end

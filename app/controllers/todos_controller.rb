@@ -23,7 +23,7 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
 
     if @todo.save
-      render json: @todo, status: :created, location: @todo
+      render json: @todo, status: :ok, location: @todo
     else
       render json: @todo.errors, status: :unprocessable_entity
     end
@@ -41,6 +41,7 @@ class TodosController < ApplicationController
   # DELETE /todos/1
   def destroy
     @todo.destroy
+    render json: { success: true, message: "Todo deleted" }
   end
 
   private

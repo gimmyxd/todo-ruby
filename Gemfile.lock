@@ -241,6 +241,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   http
+  jwt
   pry-byebug
   puma (~> 5.0)
   rack-cors

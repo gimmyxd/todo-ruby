@@ -7,7 +7,7 @@ Aserto.configure do |config|
   config.tenant_id = ENV.fetch("ASERTO_TENANT_ID", nil)
   config.authorizer_api_key = ENV.fetch("ASERTO_AUTHORIZER_API_KEY", nil)
   config.policy_root = "todoApp"
-  config.service_url = "authorizer.eng.aserto.com:8443"
+  config.service_url = "#{ENV.fetch('ASERTO_AUTHORIZER_SERVICE_URL').sub('https://', '')}:8443"
   config.decision = "allowed"
   config.logger = Rails.logger
   config.identity_mapping = {

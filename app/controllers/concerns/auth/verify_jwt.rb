@@ -7,7 +7,6 @@ module Auth
     JWKS_CACHE_KEY = "auth/jwks-json"
 
     def call(token)
-      require "pry-byebug"
       JWT.decode(
         token,
         nil,

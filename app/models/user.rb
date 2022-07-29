@@ -23,7 +23,11 @@ class User
   end
 
   class << self
-    def find(id)
+    def find(sub)
+      id = resolve_user_by_identity(sub)
+
+      raise StandardError, "could not fetch user" unless id
+
       response = HTTP
                  .headers(
                    {
@@ -44,6 +48,32 @@ class User
 
       user_data = response.parse["result"]
       User.new(user_data)
+    end
+
+    private
+
+    def resolve_user_by_identity(sub)
+      response = HTTP
+                 .headers(
+                   {
+                     Authorization: "basic #{ENV.fetch('ASERTO_AUTHORIZER_API_KEY', nil)}",
+                     "aserto-tenant-id": ENV.fetch("ASERTO_TENANT_ID", nil),
+                     "Content-Type": "application/json"
+                   }
+                 )
+                 .post(
+                   "#{ENV.fetch('ASERTO_AUTHORIZER_SERVICE_URL',
+                                nil)}/api/v1/dir/identities",
+                   json: {
+                     identity: sub
+                   }
+                 )
+      if response.status != 200
+        Rails.logger.debug response.inspect
+        raise StandardError, "could not fetch user"
+      end
+
+      response.parse["id"]
     end
   end
 end

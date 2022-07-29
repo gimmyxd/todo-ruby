@@ -11,14 +11,14 @@ class User
 
   def as_json(_options = {})
     {
-      id: @id,
-      enabled: @enabled,
-      display_name: @display_name,
-      email: @email,
-      picture: @picture,
-      identities: @identities,
-      metadata: @metadata,
-      attributes: @attributes
+      id: id,
+      enabled: enabled,
+      display_name: display_name,
+      email: email,
+      picture: picture,
+      identities: identities,
+      metadata: metadata,
+      attributes: attributes
     }
   end
 

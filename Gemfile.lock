@@ -78,6 +78,8 @@ GEM
       aserto (~> 0.0.4)
     ast (2.4.2)
     builder (3.2.4)
+    byebug (11.1.3)
+    coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     debug (1.6.1)
@@ -152,11 +154,19 @@ GEM
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-byebug (3.9.0)
+      byebug (~> 11.0)
+      pry (~> 0.13.0)
     public_suffix (4.0.7)
     puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (2.0.2)
       rack (>= 1.3)
     rails (7.0.3.1)
@@ -231,7 +241,9 @@ DEPENDENCIES
   debug
   dotenv-rails
   http
+  pry-byebug
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.3, >= 7.0.3.1)
   rubocop
   rubocop-rails

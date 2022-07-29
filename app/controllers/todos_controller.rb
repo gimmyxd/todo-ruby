@@ -47,11 +47,21 @@ class TodosController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_todo
-    @todo = Todo.find(params[:id])
+    @todo = Todo.find(todo_params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def todo_params
-    params.fetch(:todo, {})
+    normalize_params.permit(:id, :title, :completed, :owner_id).to_h.transform_keys do |key|
+      key.to_s.tableize.singularize.to_sym
+    end
+  end
+
+  def normalize_params
+    ActionController::Parameters.new(
+      params.permit(:ID, :Title, :Completed, :OwnerID).to_h.transform_keys do |key|
+        key.to_s.tableize.singularize.to_sym
+      end
+    )
   end
 end

@@ -68,7 +68,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    aserto (0.0.4)
+    aserto (0.0.5)
       aserto-grpc-authz (~> 0.0.6)
       jwt (~> 2.4)
       rack (~> 2.0)

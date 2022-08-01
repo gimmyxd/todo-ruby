@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TodosController < ApplicationController
+  before_action :set_resource_context
   before_action :set_todo, only: %i[show update destroy]
 
   # authorize
@@ -59,10 +60,19 @@ class TodosController < ApplicationController
   end
 
   def normalize_params
+    params.delete(:todo)
     ActionController::Parameters.new(
-      params.permit(:ID, :Title, :Completed, :OwnerID).to_h.transform_keys do |key|
+      params.permit(:ID, :Title, :Completed, :OwnerID, :ownerID).to_h.transform_keys do |key|
         key.to_s.tableize.singularize.to_sym
       end
     )
+  end
+
+  def set_resource_context
+    Aserto.with_resource_mapper do |_request|
+      {
+        ownerID: todo_params[:owner_id]
+      }
+    end
   end
 end

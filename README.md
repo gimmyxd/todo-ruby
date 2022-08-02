@@ -2,7 +2,6 @@
 
 Set up the following environment variables:
 
-```
 ### ENV
 ```
 ASERTO_AUTHORIZER_API_KEY
